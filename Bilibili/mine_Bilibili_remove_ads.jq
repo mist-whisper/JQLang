@@ -24,28 +24,6 @@
                     "uri": "bilibili://user_center/favourite",
                     "icon": "http://i0.hdslb.com/bfs/archive/d79b19d983067a1b91614e830a7100c05204a821.png",
                     "common_op_item": {}
-                },
-                {
-                    "id": 2830,
-                    "title": "稍后再看",
-                    "uri": "bilibili://user_center/watch_later_v2",
-                    "icon": "http://i0.hdslb.com/bfs/archive/63bb768caa02a68cb566a838f6f2415f0d1d02d6.png",
-                    "need_login": 1,
-                    "common_op_item": {}
-                }
-            ],
-            "style": 1,
-            "button": {}
-        },
-        {
-            "title": "推荐服务",
-            "items": [
-                {
-                    "id": 402,
-                    "title": "个性装扮",
-                    "uri": "https://www.bilibili.com/h5/mall/home?navhide=1&f_source=shop&from=myservice",
-                    "icon": "http://i0.hdslb.com/bfs/archive/0bcad10661b50f583969b5a188c12e5f0731628c.png",
-                    "common_op_item": {}
                 }
             ],
             "style": 1,
@@ -54,13 +32,6 @@
         {
             "title": "更多服务",
             "items": [
-                {
-                    "id": 407,
-                    "title": "联系客服",
-                    "uri": "bilibili://user_center/feedback",
-                    "icon": "http://i0.hdslb.com/bfs/archive/7ca840cf1d887a45ee1ef441ab57845bf26ef5fa.png",
-                    "common_op_item": {}
-                },
                 {
                     "id": 410,
                     "title": "设置",
