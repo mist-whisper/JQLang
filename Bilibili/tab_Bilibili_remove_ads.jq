@@ -4,7 +4,8 @@
         id: 731,
         name: "直播",
         tab_id: "直播tab",
-        uri: "bilibili://live/home"
+        uri: "bilibili://live/home",
+        default_selected: 1
     },
     {
         pos: 2,
@@ -12,7 +13,6 @@
         name: "推荐",
         tab_id: "推荐tab",
         uri: "bilibili://pegasus/promo",
-        default_selected: 1
     },
     {
         pos: 3,
