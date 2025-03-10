@@ -1,5 +1,3 @@
-// 引用地址：https://kelee.one/Resource/JQLang/Bilibili/mine_Bilibili_remove_ads.jq
-
 .data |= (
     del(.answer, .live_tip, .vip_section, .vip_section_v2) | 
     if .sections_v2 then .sections_v2 = 
