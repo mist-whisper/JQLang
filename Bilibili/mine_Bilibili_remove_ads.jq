@@ -67,7 +67,6 @@
             "icon": "http://i0.hdslb.com/bfs/feed-admin/6ae7eff6af627590fc4ed80c905e9e0a6f0e8188.png",
             "mng_resource": { "icon_id": 0, "icon": "" }
         }
-        }
     ] end | 
     if .ipad_upper_sections then .ipad_upper_sections = 
     [
