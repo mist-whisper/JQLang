@@ -66,13 +66,7 @@
             "uri": "bilibili://user_center/favourite",
             "icon": "http://i0.hdslb.com/bfs/feed-admin/6ae7eff6af627590fc4ed80c905e9e0a6f0e8188.png",
             "mng_resource": { "icon_id": 0, "icon": "" }
-        },
-        {
-            "id": 750,
-            "title": "稍后再看",
-            "uri": "bilibili://user_center/watch_later",
-            "icon": "http://i0.hdslb.com/bfs/feed-admin/928ba9f559b02129e51993efc8afe95014edec94.png",
-            "mng_resource": { "icon_id": 0, "icon": "" }
+        }
         }
     ] end | 
     if .ipad_upper_sections then .ipad_upper_sections = 
@@ -104,13 +98,6 @@
     ] end | 
     if .ipad_more_sections then .ipad_more_sections = 
     [
-        {
-            "id": 763,
-            "title": "我的客服",
-            "uri": "bilibili://user_center/feedback",
-            "icon": "http://i0.hdslb.com/bfs/feed-admin/7801a6180fb67cf5f8ee05a66a4668e49fb38788.png",
-            "mng_resource": { "icon_id": 0, "icon": "" }
-        },
         {
             "id": 764,
             "title": "设置",
