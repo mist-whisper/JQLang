@@ -1,3 +1,5 @@
+# 引用地址：https://kelee.one/Resource/JQLang/Bilibili/tab_Bilibili_remove_ads.jq
+
 .data.tab = [
     {
         pos: 1,
