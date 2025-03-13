@@ -1,3 +1,4 @@
+# 引用地址：https://kelee.one/Resource/JQLang/Reddit/Reddit_remove_ads.jq
 # 2024-12-02 10:28:36
 
 walk(
