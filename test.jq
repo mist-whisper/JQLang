@@ -2,6 +2,7 @@
   select(
     .rightContent.text != "分类"
     and .rightContent.text != "朋友在听"
-    and .rightContent.text != "播客寻宝"
+    and .rightContent.text != "新节目广场"
+    and .rightContent.text != "付费精品节目单"
   )
 )
