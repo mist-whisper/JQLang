@@ -5,5 +5,6 @@
     and .rightContent.text != "新节目广场"
     and .rightContent.text != "付费精品节目单"
     and .rightContent.image != "format"
+    and (.url | contains("podcast-newforce-collection") | not)
   )
 )
