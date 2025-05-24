@@ -1,12 +1,14 @@
-.data |= map(select(
-  .type != "DISCOVERY_HEADER" 
-  or (
-    .type == "DISCOVERY_HEADER" 
-    and (.data |= map(select(
-      (.url | contains("podcast-newforce-collection") | not) 
-      and 
-      (.rightContent.text as $t | $t != "分类" and $t != "朋友在听" and $t != "新节目广场" and $t != "付费精品节目单")
-    ))) 
-    and (.data | length > 0)
-  )
-))
+.data |= map(
+  select(.type != "DISCOVERY_HEADER") 
+  + 
+  (if .type == "DISCOVERY_HEADER" and (.data | type == "array") then
+     .data |= map(select(
+       (.rightContent.text != "分类") and
+       (.rightContent.text != "朋友在听") and
+       (.rightContent.text != "新节目广场") and
+       (.rightContent.text != "付费精品节目单") and
+       (.url | contains("podcast-newforce-collection") | not)
+     )) 
+     | select(.data | length > 0)
+   else . end)
+)
