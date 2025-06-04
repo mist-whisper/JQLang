@@ -1,6 +1,6 @@
 # —— 根据当前日期返回不同 VIP 图标 ——
 def p:
-  (now
+  (now | strftime("%Y-%m-%d %H:%M") as $debug_time
    | strftime("%-m/%-d")) as $md
   | if $md == "6/1" then
       "https://i0.hdslb.com/bfs/bangumi/kt/629e28d4426f1b44af1131ade99d27741cc61d4b.png"
@@ -8,65 +8,50 @@ def p:
       "https://i0.hdslb.com/bfs/vip/52f60c8bdae8d4440edbb96dad72916022adf126.png"
     end;
 
-# —— 构造完整的 VIP 信息对象 ——
 def d:
-{
-  status:        1,
-  type:          2,
-  vip_pay_type:  0,
-  due_date:      9005270400000,
-  tv_vip_status:       1,
-  tv_vip_pay_type:     0,
-  tv_due_date:   9005270400000,
-  role:          15,
-  theme_type:    0,
-  nickname_color:"#FB7299",
-  avatar_subscript:    1,
-  avatar_subscript_url:"",
-  avatar_icon: {
-    icon_resource: {}
-  },
-  label: {
-    path:                   "",
-    text:                   "百年大会员",
-    label_theme:            "hundred_annual_vip",
-    text_color:             "#FFFFFF",
-    bg_style:               1,
-    bg_color:               "#FB7299",
-    border_color:           "",
-    use_img_label:          true,
-    image:                  p,
-    img_label_uri_hans:     "",
-    img_label_uri_hant:     "",
-    img_label_uri_hans_static: p,
-    img_label_uri_hant_static: p
-  }
-};
+  (p) as $vip_icon  # 保存图标URL避免重复计算
+  | {
+      status: 1,
+      type: 2,
+      vip_pay_type: 0,
+      due_date: 9005270400000,
+      tv_vip_status: 1,
+      tv_vip_pay_type: 0,
+      tv_due_date: 9005270400000,
+      role: 15,
+      theme_type: 0,
+      nickname_color: "#FB7299",
+      avatar_subscript: 1,
+      avatar_subscript_url: $vip_icon,  # 修复：使用正确的图标URL
+      avatar_icon: {
+        icon_resource: {
+          icon_url: $vip_icon  # 添加图标URL
+        }
+      },
+      label: {
+        path: "",
+        text: "百年大会员",
+        label_theme: "hundred_annual_vip",
+        text_color: "#FFFFFF",
+        bg_style: 1,
+        bg_color: "#FB7299",
+        border_color: "",
+        use_img_label: true,
+        image: $vip_icon,
+        img_label_uri_hans: $vip_icon,  # 修复：添加缺失的中文图标
+        img_label_uri_hant: $vip_icon,  # 修复：添加缺失的繁体图标
+        img_label_uri_hans_static: $vip_icon,
+        img_label_uri_hant_static: $vip_icon
+      }
+    };
 
-# —— 合并后的主过滤器 ——
 .data |= (
-  # 删除无用字段
-  del(
-    .answer,
-    .live_tip,
-    .vip_section,
-    .vip_section_v2,
-    .modular_vip_section
-  )
-  # 设定 vip_type
+  del(.answer, .live_tip, .vip_section, .vip_section_v2, .modular_vip_section)
   | .vip_type = 2
-  # 注入或更新 VIP 信息：
-  # 如果原 vip 字段不存在或为 null，则赋值为完整的 d
-  # 如果原 vip 存在且 status == 0，则用 d 完整覆盖
-  # 否则保持原 vip 不变
-  | .vip |=
-    if . == null then
-      d
-    elif .status == 0 then
-      d
-    else
-      .
-    end
+  
+  # 修复VIP处理逻辑：确保始终应用自定义VIP数据
+  | .vip = d  # 直接覆盖，不保留原始VIP数据
+  
   # 如果存在 sections_v2，覆盖为指定数组
   | if .sections_v2 then
       .sections_v2 =
