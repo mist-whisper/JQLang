@@ -1,0 +1,1 @@
+.data |= map(select(.type != "DISCOVERY_HEADER" and .type != "DISCOVERY_BANNER"))
